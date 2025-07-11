@@ -1,0 +1,10 @@
+*.db
+__pycache__/
+
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3 # Ignore SQLite database files
+*.sqlite # Ignore SQLite database files
+*.log # Ignore log files  
+*.env # Ignore environment variable files
