@@ -2,11 +2,20 @@
 
 This repository contains the take-home assignment for the Snello SDE Internship. It is a complete, conversational AI application that acts as a personal to-do list manager, featuring a full web interface and persistent, multi-session memory.
 
-## ✨ Live Demo
 
-![alt text](Model.png)
+## 🌐 WEBSITE USER INTERFACE OVERVIEW
 
-(This image showcases the final Streamlit web application, including the chat interface and the session history sidebar.)
+![alt text](Website_screen.png)
+
+> **This image displays the main Snello Web Application page.** It features:
+>
+> - A rich and responsive Streamlit-based chat interface
+> - A sidebar for real-time session history
+> - A dynamic to-do list dashboard
+> - Full control options including chat/session deletion and task clearing
+
+This clean and professional layout mimics modern production-grade AI interfaces.
+
 
 ## 🚀 Project Highlights & Key Features
 
@@ -31,7 +40,7 @@ This application is designed with a clean separation between the backend agent l
 - **app.py:** The primary, rich web application using Streamlit.
 - **main.py:** A simple command-line interface (CLI) for basic testing or headless operation.
 
-![alt text](Model.png)
+![alt text](Website_screen.png)
 
 ## 🛠 Tech Stack
 
