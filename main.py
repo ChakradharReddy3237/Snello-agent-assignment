@@ -1,33 +1,52 @@
 # main.py
-
-# Import the tools, not the database functions directly
-from tools import add_todo, list_todos, remove_todo
+from agent import create_agent_graph
 from database import initialize_database
+from langchain_core.messages import SystemMessage, HumanMessage
+
+# Import our new memory functions
+from memory import save_conversation, load_conversation
 
 if __name__ == '__main__':
     # Initialize the database once at the start
     initialize_database()
-    print("Database initialized.")
+    print("Database initialized. To-do list is ready.")
+    print("Snello Todo Agent is ready! Type 'exit' to quit.")
 
-    print("\n--- Testing LangChain Tools ---")
+    # Create the agent
+    app = create_agent_graph()
 
-    # To use a LangChain tool, you call its .invoke() method with a dictionary
-    print("\n1. Adding items via tools:")
-    print(add_todo.invoke({"item": "Test the LangChain tools"}))
-    print(add_todo.invoke({"item": "Prepare for the agent layer"}))
+    # --- MEMORY LOGIC ---
+    # Load previous conversation history or start a new one
+    conversation_history = load_conversation()
+    
+    if not conversation_history:
+        # If history is empty, add the initial system message
+        print("Starting new conversation.")
+        conversation_history.append(
+            SystemMessage(content="You are a helpful to-do list assistant named Snello. You can add, remove, and list items. Be friendly and confirm actions. Ask for clarification if a user's request is ambiguous.")
+        )
+    else:
+        print("Loaded previous conversation.")
+    # --- END MEMORY LOGIC ---
 
-    print("\n2. Listing items via tool:")
-    # The list_todos tool doesn't need any input, so we pass an empty dictionary
-    current_list_str = list_todos.invoke({})
-    print(current_list_str)
-
-    print("\n3. Removing an item via tool (e.g., item with ID 3):")
-    # NOTE: The ID might be different on your machine if you ran the test before.
-    # We will just assume we want to remove ID 3 for this test.
-    print(remove_todo.invoke({"item_id": 3}))
-
-    print("\n4. Final list via tool:")
-    print(list_todos.invoke({}))
-
-    print("\n5. Testing error handling by removing a non-existent item (ID 999):")
-    print(remove_todo.invoke({"item_id": 999}))
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'exit':
+            # Save the final history before exiting
+            save_conversation(conversation_history)
+            print("Conversation saved. Goodbye!")
+            break
+        
+        conversation_history.append(HumanMessage(content=user_input))
+        
+        inputs = {"messages": conversation_history}
+        result = app.invoke(inputs)
+        
+        ai_response = result['messages'][-1]
+        
+        conversation_history.append(ai_response)
+        
+        # Save the history after every turn
+        save_conversation(conversation_history)
+        
+        print(f"Agent: {ai_response.content}")

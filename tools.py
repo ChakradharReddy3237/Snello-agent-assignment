@@ -1,7 +1,7 @@
 # tools.py
 from langchain_core.tools import tool
 from pydantic.v1 import BaseModel, Field
-import database # Import the database module we just created
+import database 
 
 # Define input schemas for better tool usage by the LLM.
 # This helps the AI know exactly what information to provide.
@@ -24,7 +24,7 @@ def list_todos() -> str:
         return "The user's to-do list is currently empty."
     
     # Format the output nicely so the AI can present it well
-    formatted_items = [f"ID {item_id}: {item_text}" for item_id, item_text in items]
+    formatted_items = [f"{item_id}: {item_text}" for item_id, item_text in items]
     return "Here is the user's current to-do list:\n" + "\n".join(formatted_items)
 
 class RemoveTodoInput(BaseModel):
