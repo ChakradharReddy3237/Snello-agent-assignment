@@ -1,10 +1,8 @@
 # tools.py
 from langchain_core.tools import tool
 from pydantic.v1 import BaseModel, Field
-import database 
+import database
 
-# Define input schemas for better tool usage by the LLM.
-# This helps the AI know exactly what information to provide.
 class AddTodoInput(BaseModel):
     item: str = Field(description="The content of the to-do item to add.")
 
@@ -23,9 +21,15 @@ def list_todos() -> str:
     if not items:
         return "The user's to-do list is currently empty."
     
-    # Format the output nicely so the AI can present it well
-    formatted_items = [f"{item_id}: {item_text}" for item_id, item_text in items]
-    return "Here is the user's current to-do list:\n" + "\n".join(formatted_items)
+    # --- THE FINAL, PERFECT FORMATTING LOGIC ---
+    # This creates the clean "1. Item" format.
+    formatted_list = [f"{item_id}. {item_text}" for item_id, item_text in items]
+    
+    # Join the items with a newline character.
+    final_list_string = "\n".join(formatted_list)
+    
+    # We explicitly add the header here so the LLM doesn't have to.
+    return f"Here is your current to-do list:\n{final_list_string}"
 
 class RemoveTodoInput(BaseModel):
     item_id: int = Field(description="The numerical ID of the to-do item that should be removed.")
@@ -35,10 +39,8 @@ def remove_todo(item_id: int) -> str:
     """Use this tool to remove a specific item from the to-do list using its ID."""
     print(f"--- Calling remove_todo tool with ID: {item_id} ---")
     
-    # Call the updated database function and store the result
     was_deleted = database.remove_item(item_id)
     
-    # Provide an intelligent response based on the outcome
     if was_deleted:
         return f"Successfully removed to-do item with ID {item_id}."
     else:

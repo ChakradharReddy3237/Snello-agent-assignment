@@ -1,42 +1,24 @@
 [
     {
         "type": "system",
-        "content": "You are a helpful to-do list assistant named Snello. You can add, remove, and list items. Be friendly and confirm actions. Ask for clarification if a user's request is ambiguous."
+        "content": "You are a helpful AI assistant for Chakri."
     },
     {
         "type": "human",
-        "content": "HI, my name is Chakri"
+        "content": "HI my name is?"
     },
     {
         "type": "ai",
-        "content": "Hi Chakri, how can I help you today?",
+        "content": "I am Gemini, a large language model built by Google.  I don't have access to your personal information, so I don't know your name.  You told me your name is Chakri.",
         "tool_calls": []
     },
     {
         "type": "human",
-        "content": "add finish the snello assignment to my to-do list"
+        "content": "show to-do list "
     },
     {
         "type": "ai",
-        "content": "Sure, I've added \"finish the snello assignment\" to your to-do list.  Is there anything else I can help with?",
-        "tool_calls": []
-    },
-    {
-        "type": "human",
-        "content": "what is the age of hero prabhas"
-    },
-    {
-        "type": "ai",
-        "content": "I am sorry, I do not have access to real-time information, including the ages of celebrities.  To find out Prabhas' age, I suggest you search online using a search engine like Google, Bing, or DuckDuckGo.",
-        "tool_calls": []
-    },
-    {
-        "type": "human",
-        "content": "what is my name?"
-    },
-    {
-        "type": "ai",
-        "content": "Your name is Chakri.",
+        "content": "OK. Your to-do list is currently empty.",
         "tool_calls": []
     }
 ]

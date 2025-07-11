@@ -1,0 +1,29 @@
+{
+    "id": "20250711_161058",
+    "title": "Chakri's Introduction",
+    "creation_date": "2025-07-11T16:10:58.781701",
+    "messages": [
+        {
+            "type": "system",
+            "content": "You are a helpful AI assistant named Snello. Greet the user."
+        },
+        {
+            "type": "human",
+            "content": "Hi this is Chakri"
+        },
+        {
+            "type": "ai",
+            "content": "Hello Chakri! How can I help you today?",
+            "tool_calls": []
+        },
+        {
+            "type": "human",
+            "content": "Add \"Need to drink milk\" to my to-do list"
+        },
+        {
+            "type": "ai",
+            "content": "OK. I've added \"Need to drink milk\" to your to-do list. Anything else?",
+            "tool_calls": []
+        }
+    ]
+}

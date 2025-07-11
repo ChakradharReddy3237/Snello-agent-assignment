@@ -48,3 +48,14 @@ def list_items(db_name="todo.db"):
     conn.close()
     return items
 
+def clear_all_todos(db_name="todo.db"):
+    """Deletes all items from the todos table."""
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+    # DELETE without a WHERE clause removes all rows
+    cursor.execute("DELETE FROM todos")
+    # Optional: Reset the autoincrement counter
+    cursor.execute("DELETE FROM sqlite_sequence WHERE name='todos'")
+    conn.commit()
+    conn.close()
+    print("--- All to-do items have been cleared. ---")

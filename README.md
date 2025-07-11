@@ -110,6 +110,8 @@ def remove_todo(item_id: int) -> str:
 
 - **Database IDs:** The SQLite database uses AUTOINCREMENT for primary keys. This means even after deleting all items, new items will continue from the last highest ID. This is standard database behavior for ensuring unique IDs but could be clarified to the user in the UI.
 
+-   **API Rate Limits:** The application uses the free tier of the Google Gemini API, which is limited to 50 requests per day. During heavy testing or usage, this quota can be exhausted, which will cause the application to temporarily stop responding. The app includes error handling to gracefully inform the user when this occurs. For a production environment, this would be resolved by enabling billing on the Google Cloud project to move to a pay-as-you-go model with much higher limits.
+
 ---
 
 🧠 Built for Snello | ✨ Powered by LangGraph, Gemini & Python
