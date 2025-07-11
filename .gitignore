@@ -1,0 +1,29 @@
+# Database files
+*.db
+*.sqlite3
+*.sqlite
+
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+
+# Logs
+*.log
+
+# Environment variables
+*.env
+
+# Virtual environments
+venv/
+.env
+
+# Generated data files
+*.json
+
+# Editor directories and files
+.vscode/
+.idea/
