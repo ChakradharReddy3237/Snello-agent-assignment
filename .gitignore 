@@ -1,10 +1,19 @@
+# Database files
 *.db
-__pycache__/
+*.sqlite3
+*.sqlite
 
+# Byte-compiled / cache
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.sqlite3 # Ignore SQLite database files
-*.sqlite # Ignore SQLite database files
-*.log # Ignore log files  
-*.env # Ignore environment variable files
+
+# Logs
+*.log
+
+# Environment variables
+*.env
+
+# Virtual environments
+venv/

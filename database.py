@@ -22,12 +22,22 @@ def add_item(item, db_name="todo.db"):
     conn.close()
 
 def remove_item(item_id, db_name="todo.db"):
-    """Removes an item from the to-do list based on its ID."""
+    """Removes an item from the to-do list based on its ID.
+    
+    Returns:
+        bool: True if an item was deleted, False otherwise.
+    """
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
     cursor.execute("DELETE FROM todos WHERE id = ?", (item_id,))
+    
+    # Check how many rows were affected. If > 0, the deletion was successful.
+    rows_affected = cursor.rowcount
+    
     conn.commit()
     conn.close()
+    
+    return rows_affected > 0
 
 def list_items(db_name="todo.db"):
     """Lists all items in the to-do list."""
