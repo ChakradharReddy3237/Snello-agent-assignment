@@ -40,7 +40,7 @@ This application is designed with a clean separation between the backend agent l
 - **app.py:** The primary, rich web application using Streamlit.
 - **main.py:** A simple command-line interface (CLI) for basic testing or headless operation.
 
-![alt text](Website_screen.png)
+![alt text](Model.png)
 
 ## 🛠 Tech Stack
 
